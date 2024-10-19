@@ -1,10 +1,16 @@
 import os
 from groq import Groq
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
+
+original_recipe = ""
 
 # extracting ingredients from recipe
 def get_ingredients(user_input_recipe):
@@ -158,15 +164,22 @@ food_restriction = "vegetarian"
 health_problems = "high cholesterol"
 protein_goal = 30
 
-a = get_ingredients(original_recipe)
-b = scaling_ingredients(a,scaling_factor)
-c = food_restrictions(food_restriction, b)
-d = health_modifications(c, health_problems, food_restriction)
-e = protein_goals(d, protein_goal)
-f = new_recipe(e, original_recipe)
-print(f)
 
+@app.route('/api/process_input', methods=['POST'])
+def process_input():
+    global original_recipe
+    data = request.get_json()
+    original_recipe = data['input']
+    a = get_ingredients(original_recipe)
+    b = scaling_ingredients(a,scaling_factor)
+    c = food_restrictions(food_restriction, b)
+    d = health_modifications(c, health_problems, food_restriction)
+    e = protein_goals(d, protein_goal)
+    f = new_recipe(e, original_recipe)
+    print(f)
+    return f
 
+app.run()
 
 
 

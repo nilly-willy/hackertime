@@ -9,6 +9,7 @@ CORS(app)
 
 # recipe
 recipe = ""
+
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
 )
@@ -17,6 +18,7 @@ client = Groq(
 # Endpoint to process input from React
 @app.route('/api/process_input', methods=['POST'])
 def process_input():
+    global recipe
     data = request.get_json()
     recipe = data['input']
     print(data)
@@ -31,7 +33,7 @@ def process_input():
     ],
     model="llama3-8b-8192",
     )
-    
+
     print(chat_completion.choices[0].message.content)
     return jsonify({'processed': data})
 
