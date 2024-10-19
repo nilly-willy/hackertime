@@ -1,8 +1,10 @@
 import os
 from groq import Groq
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
+# app = Flask(__name__)
+# CORS(app)
 app = Flask(__name__)
 CORS(app)
 
@@ -164,20 +166,27 @@ food_restriction = "vegetarian"
 health_problems = "high cholesterol"
 protein_goal = 30
 
+@app.route('/')
+def index():
+    return "sdf"
 
-@app.route('/api/process_input', methods=['POST'])
+@app.route('/time')
+def get_current_time():
+    return {'time': time.time()}
+
+@app.route('/api/process_input', methods=['POST', 'OPTIONS'])
 def process_input():
-    global original_recipe
-    data = request.get_json()
-    original_recipe = data['input']
-    a = get_ingredients(original_recipe)
-    b = scaling_ingredients(a,scaling_factor)
-    c = food_restrictions(food_restriction, b)
-    d = health_modifications(c, health_problems, food_restriction)
-    e = protein_goals(d, protein_goal)
-    f = new_recipe(e, original_recipe)
-    print(f)
-    return f
+    # global original_recipe
+    # data = request.get_json()
+    # original_recipe = data['input']
+    # a = get_ingredients(original_recipe)
+    # b = scaling_ingredients(a,scaling_factor)
+    # c = food_restrictions(food_restriction, b)
+    # d = health_modifications(c, health_problems, food_restriction)
+    # e = protein_goals(d, protein_goal)
+    # f = new_recipe(e, original_recipe)
+    # print(f)
+    return jsonify({"hello": "Sdfsd"})
 
 app.run()
 
