@@ -1,14 +1,9 @@
-function Progress() {
-    return (
-      <div className="App">
-        <progress value={0.5} />
-      </div>
-    );
-  }
+function Progress({ pvalue }) {
+  return (
+    <div className="App">
+      <progress value={parseFloat(pvalue)} />
+    </div>
+  );
+}
 
 export default Progress;
-
-
-
-
-

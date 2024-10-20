@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import NextButton from './nextButton';
+import Progress from './progress';
 
 
 function MainForm() {  
@@ -40,7 +42,7 @@ function MainForm() {
     console.log(health);
     try {
         console.log("fetching right now...")
-        await fetch('http://localhost:5000/api/submit-selections', {
+        await fetch('http://localhost:5001/api/submit-selections', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ function MainForm() {
 
   return (
     <div>
+      <Progress pvalue="0.333" />
       <h3>Health Conditions</h3>
       <div style={{ display: 'flex', gap: '10px' }}>
         {healthOptions.map((option) => (
@@ -90,7 +93,7 @@ function MainForm() {
         ))}
       </div>
 
-      <button 
+      {/* <button 
         onClick={sendDataToBackend} 
         style={{ 
           marginTop: '20px',
@@ -100,7 +103,9 @@ function MainForm() {
           cursor: 'pointer',
         }}>
         Submit
-      </button>
+      </button> */}
+      
+      <NextButton to="/protein" onClick={sendDataToBackend} />
     </div>
 
   );

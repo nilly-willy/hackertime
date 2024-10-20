@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Progress from './progress'; 
+import NextButton from './nextButton';
 
 function ScalingInput() {
   const [inputValue, setInputValue] = useState(0);
@@ -36,6 +38,7 @@ function ScalingInput() {
 
   return (
     <div className="App">
+      <Progress pvalue="0.667" />
       <label htmlFor="numberInput">Enter a number:</label>
       <input 
         id="numberInput"
@@ -46,7 +49,8 @@ function ScalingInput() {
         max="100" // Set maximum value (optional)
         step="1"  // Increment or decrement step size
       />
-      <button onClick={handleSubmit}>Submit</button>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+      <NextButton to="/load" onClick={handleSubmit} label="get my new recipe!"/>
     </div>
   );
 }
