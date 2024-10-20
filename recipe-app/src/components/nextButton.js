@@ -16,7 +16,7 @@ function NextButton({ to, label = "Next", onClick }) {
       onClick={handleClick}
       style={{
         padding: '10px 20px',
-        backgroundColor: 'lightblue',
+        backgroundColor: '#FFA65D',
         border: 'none',
         cursor: 'pointer',
         fontSize: '16px'

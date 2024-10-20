@@ -60,7 +60,7 @@ function MainForm() {
     <div>
       <Progress pvalue="0.333" />
       <h3>Health Conditions</h3>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', gap: '10px', width: '300px', flexWrap:'wrap'}}>
         {healthOptions.map((option) => (
           <button
             key={option}
@@ -69,6 +69,7 @@ function MainForm() {
               padding: '10px 20px',
               border: 'none',
               cursor: 'pointer',
+              borderRadius:'25px'
             }}
           >
             {option}
@@ -77,16 +78,17 @@ function MainForm() {
       </div>
 
       <h3> Dietary Restrictions </h3>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', gap: '10px', width: '300px', flexWrap:'wrap'}}>
         {dietOptions.map((option) => (
           <button
             key={option}
             onClick={() => handleDiet(option)}
             style={{
-              padding: '10px 20px',
-              border: 'none',
-              cursor: 'pointer',
-            }}
+                padding: '10px 20px',
+                border: 'none',
+                cursor: 'pointer',
+                borderRadius:'25px'
+              }}
           >
             {option}
           </button>
@@ -104,7 +106,10 @@ function MainForm() {
         }}>
         Submit
       </button> */}
+      <div style={{margin: '30px 30px 30px 10px'}}>
       <NextButton to="/protein" onClick={sendDataToBackend} />
+      </div>
+      
     </div>
 
   );

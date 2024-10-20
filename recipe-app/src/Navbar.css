@@ -1,31 +1,36 @@
 /* Navbar.css */
 
 /* Navbar container styles */
+.body{
+  overflow: hidden;
+}
+
 .navbar-n {
-    display: flex;
-    justify-content: space-between; /* Ensure space between logo and menu */
-    align-items: center;
-    padding: 20px;
-    background-color: #ffffff;
-  }
-  
-  /* Logo styling */
-  .logo-n img {
-    width: 150px; /* Adjust the size of the logo as needed */
-    height: auto;
-  }
-  
-  /* Hamburger icon (shown only on smaller screens) */
-  .hamburger-n {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    cursor: pointer;
-    width: 30px;
-    height: 25px;
-    z-index: 20;
-    margin-left: auto; /* Pushes the hamburger to the right */
-  }
+  display: flex;
+  justify-content: flex-start; /* Align logo and menu icon closer together */
+  align-items: center;
+  padding: 5px;
+  background-color: #ffffff;
+  gap: 175px; /* Controls the distance between the logo and the hamburger */
+}
+
+/* Logo styling */
+.logo-n img {
+  width: 150px; /* Adjust the size of the logo as needed */
+  height: auto;
+}
+
+/* Hamburger icon */
+.hamburger-n {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  z-index: 20;
+  /* Removed margin-left: auto to bring it closer to the logo */
+}
   
   .line-n {
     width: 100%;

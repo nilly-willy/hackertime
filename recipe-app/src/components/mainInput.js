@@ -16,9 +16,9 @@ function MainInput() {
       console.log('Input value before fetch:', inputValue);
 
 
-      fetch('http://localhost:5000/').then(res => res.text()).then(console.log)
+      fetch('http://localhost:5001/').then(res => res.text()).then(console.log)
 
-      const response = await fetch('http://localhost:5000/api/process_input', {
+      const response = await fetch('http://localhost:5001/api/process_input', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,11 +41,17 @@ function MainInput() {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex', flexDirection:'column',  gap: '10px' , margin:'50px'}}>
       <Progress pvalue="0.167" />
-      <input className="Main-text"  type="text" value={inputValue} onChange={handleChange} />
+      <input className="Main-text"  type="text" value={inputValue} onChange={handleChange} 
+        style={{padding: '12px 20px', height: '50px'}}/>
       {/* <button type="submit" onClick={handleClick}>Submit</button> */}
-      <NextButton to="/embed" type="submit" onClick={handleClick} label="Upload"/>
+      <NextButton to="/embed" type="submit" onClick={handleClick} label="Upload" style={{
+              padding: '10px 20px',
+              border: 'none',
+              cursor: 'pointer',
+              width: 'fit-content'
+            }}/>
     </div>
   );
 }
