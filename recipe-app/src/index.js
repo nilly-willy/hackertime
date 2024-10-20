@@ -7,9 +7,9 @@ import FirstPage from './components/firstPage';
 import MainForm from './components/mainForm';
 import Progress from './components/progress';
 import ScalingInput from './components/scaling'
-import App from './components/App';
 import ProteinGoalInput from './components/proteinGoals';
 import FinalSubmitButton from './components/finalSubmit';
+import MainInput from "./components/mainInput";
 
 function Layout() {
   return (
@@ -27,6 +27,7 @@ return (
       <Route path="/">
         {/* Use 'index' for the default page */}
         <Route index element={<FirstPage />} />
+        <Route path="input" element={<MainInput />} />
         <Route path="form" element={<MainForm />} />
         <Route path="progress" element={<Progress />} />
         <Route path="scale" element={<ScalingInput />} />

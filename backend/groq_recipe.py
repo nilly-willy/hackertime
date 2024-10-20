@@ -201,7 +201,7 @@ def submit_selections():
     global food_restriction
     food_restriction = data[1]
 
-    # d = health_modifications(c, health_problems, food_restriction
+    # d = health_modifications(c, health_problems, food_restriction)
 
     # Return a response
     print("message Selections received!", data)
