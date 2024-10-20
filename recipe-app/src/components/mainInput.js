@@ -13,9 +13,9 @@ function MainInput() {
     try {
 
 
-      fetch('http://localhost:5000/').then(res => res.text()).then(console.log)
+      fetch('http://localhost:5001/').then(res => res.text()).then(console.log)
 
-      const response = await fetch('http://localhost:5000/api/process_input', {
+      const response = await fetch('http://localhost:5001/api/process_input', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

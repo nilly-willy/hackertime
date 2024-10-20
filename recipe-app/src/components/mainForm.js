@@ -40,7 +40,7 @@ function MainForm() {
     console.log(health);
     try {
         console.log("fetching right now...")
-        await fetch('http://localhost:5000/api/submit-selections', {
+        await fetch('http://localhost:5001/api/submit-selections', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

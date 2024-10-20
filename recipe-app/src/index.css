@@ -11,3 +11,291 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Button text */
+.button-text {
+  color: black;
+  font-size: 20px;
+  font-family: 'Sarpanch', sans-serif;
+  font-weight: 700;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+
+/* Headings */
+.heading-1 {
+  color: black;
+  font-size: 24px;
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 1000;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+
+.heading-2 {
+  color: black;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.heading-3 {
+  color: black;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* Body text */
+.body-text-small {
+  color: black;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.body-text-small-italic {
+  color: black;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.body-text-medium {
+  color: black;
+  font-size: 13.88px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+/* Ingredient text styles with colors */
+.ingredient-default {
+  color: black;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.ingredient-alt-1 {
+  color: #247BA0;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.ingredient-alt-2 {
+  color: #65743A;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.ingredient-alt-3 {
+  color: #A3333D;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+/* Pill button text */
+.pill-text {
+  color: black;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.pill-text-selected {
+  color: white;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+/* Image overlay text */
+.image-overlay-text {
+  color: black;
+  font-size: 23px;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  word-wrap: break-word;
+}
+
+/* Footer text */
+.footer-text {
+  color: #8A8A8D;
+  font-size: 14.46px;
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  line-height: 20.82px;
+  word-wrap: break-word;
+}
+
+/* Status Bar Wrapper */
+.status-bar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Empty Bar (Background Bar) */
+.status-bar-background {
+  width: 341px; /* or set dynamically if this varies */
+  height: 16px;
+  position: absolute;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #D9D9D9;
+}
+
+/* Filled Bar (Progress Bar) */
+.status-bar-progress {
+  height: 16px;
+  position: absolute;
+  background: linear-gradient(90deg, #247BA0 0%, #1D3461 100%);
+  border-radius: 20px;
+  transition: width 0.3s ease; /* Smooth animation for progress */
+}
+
+/*** import React from 'react';
+import './StatusBar.css'; // Assuming the CSS is saved as StatusBar.css
+
+const StatusBar = ({ progress }) => {
+    // 'progress' should be a number between 0 and 100 to reflect percentage of completion
+
+    return (
+        <div className="status-bar-wrapper">
+            <div className="status-bar-background" />
+            <div className="status-bar-progress" style={{ width: `${progress}%` }} />
+        </div>
+    );
+};
+
+export default StatusBar;
+***/
+
+/* General button styling */
+.button {
+  position: relative;
+  border-radius: 35.27px;
+  font-family: 'Sarpanch', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+  word-wrap: break-word;
+  color: black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 2px solid black;
+  display: inline-block;
+}
+
+/* Specific buttons */
+.upload-recipe-button {
+  background: radial-gradient(100% 100% at 0% 0%, #FBB4B4 0%, #FFA65D 100%);
+  width: 306px;
+  height: 50px;
+}
+
+.next-button {
+  background: #FFA65D;
+  width: 124px;
+  height: 35px;
+}
+
+.get-new-recipe-button {
+  background: #FFA65D;
+  width: 296px;
+  height: 37px;
+}
+
+.check-button, .like-button, .save-button, .share-button {
+  background: #FFA65D;
+  border-radius: 9999px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid black;
+  position: relative;
+}
+
+.check-button {
+  width: 37px;
+  height: 37px;
+}
+
+.like-button, .save-button, .share-button {
+  width: 30px;
+  height: 30px;
+}
+
+/* Icon sizes for smaller buttons */
+.check-icon, .like-icon, .save-icon, .share-icon {
+  position: absolute;
+}
+
+.check-icon {
+  width: 13.33px;
+  height: 9.17px;
+  border: 1.67px solid white;
+}
+
+.like-icon {
+  width: 15.43px;
+  height: 13.27px;
+  background-color: black;
+}
+
+.save-icon {
+  width: 11.83px;
+  height: 15.57px;
+  background-color: black;
+}
+
+.share-icon {
+  width: 12.01px;
+  height: 12.98px;
+  border: 1px solid black;
+}
+
+/* Pills */
+.pill {
+  padding: 3px 13px;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  display: inline-flex;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.pill-unselected {
+  background: #D9D9D9;
+  color: black;
+}
+
+.pill-selected {
+  background: #65743A;
+  color: white;
+}
