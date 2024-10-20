@@ -1,48 +1,36 @@
-// Filename - App.js
+// import ReactDOM from "react-dom/client";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { Outlet } from 'react-router-dom';
 
-// Importing modules
-import React, { useState, useEffect } from "react";
+// // import components
+// import FirstPage from './components/firstPage'; 
+// import MainForm from './components/mainForm';
+// import Progress from './components/progress';
 
-function App() {
-    // usestate for setting a javascript
-    // object for storing and using data
-    const [data, setdata] = useState({
-        name: "",
-        age: 0,
-        date: "",
-        programming: "",
-    });
+// function Layout() {
+//     return (
+//       <div>
+//         <h1>REMI</h1>
+//         <Outlet /> {/* Render child routes here */}
+//       </div>
+//     );
+// }
 
-    // Using useEffect for single rendering
-    useEffect(() => {
-        // Using fetch to fetch the api from 
-        // flask server it will be redirected to proxy
-        fetch("/data").then((res) =>
-            res.json().then((data) => {
-                // Setting a data from api
-                setdata({
-                    name: data.Name,
-                    age: data.Age,
-                    date: data.Date,
-                    programming: data.programming,
-                });
-            })
-        );
-    }, []);
+// export default function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         {/* Set Layout as the base route */}
+//         <Route path="/" element={<Layout />}>
+//           {/* Use 'index' for the default page */}
+//           <Route index element={<FirstPage />} />
+//           <Route path="form" element={<MainForm />} />
+//           <Route path="progress" element={<Progress />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <h1>React and flask</h1>
-                {/* Calling a data from setdata for showing */}
-                <p>{data.name}</p>
-                <p>{data.age}</p>
-                <p>{data.date}</p>
-                <p>{data.programming}</p>
-
-            </header>
-        </div>
-    );
-}
-
-export default App;
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<App />);
