@@ -1,21 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-<<<<<<< HEAD
-function NextButton({ to, onClick, label = "Next" }) {
+function NextButton({ to, label = "Next", onClick }) {
   const navigate = useNavigate();
 
-  const handleClick = async () => {
-    // Call the onClick function passed as a prop to handle input logic
-    await onClick(); // Wait for any async operation (like fetching) to complete
-    navigate(to); // Then navigate to the specified path
-=======
-function NextButton({ to, label = "Next" }) {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
+  const handleClick = async (e) => {
+    if (onClick) {
+      await onClick(e); // Execute the onClick passed as a prop
+    }
     navigate(to); // Navigate to the specified path
->>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
   };
 
   return (

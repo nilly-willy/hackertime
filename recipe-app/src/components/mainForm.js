@@ -42,7 +42,7 @@ function MainForm() {
     console.log(health);
     try {
         console.log("fetching right now...")
-        await fetch('http://localhost:5001/api/submit-selections', {
+        await fetch('http://localhost:5000/api/submit-selections', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -104,10 +104,6 @@ function MainForm() {
         }}>
         Submit
       </button> */}
-<<<<<<< HEAD
-      
-=======
->>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
       <NextButton to="/protein" onClick={sendDataToBackend} />
     </div>
 

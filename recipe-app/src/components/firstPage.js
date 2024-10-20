@@ -1,3 +1,4 @@
+import '../index.css';
 import NextButton from './nextButton';
 
 function FirstPage() {
