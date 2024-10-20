@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import NextButton from './nextButton';
-=======
-import '../index.css';
->>>>>>> bed215178a9cc120701608498eed4a4aa47c6baf
 
 function FirstPage() {
     return (
