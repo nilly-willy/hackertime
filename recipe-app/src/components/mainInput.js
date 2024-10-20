@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Progress from './progress';
+import NextButton from './nextButton';
 
 function MainInput() {
 
@@ -8,6 +10,7 @@ function MainInput() {
     setInputValue(event.target.value);
   }
 
+  
   const handleClick = async () => {
 
     try {
@@ -34,8 +37,10 @@ function MainInput() {
 
   return (
     <div className="App">
+      <Progress pvalue="0.167" />
       <input className="Main-text"  type="text" value={inputValue} onChange={handleChange} />
-      <button type="submit" onClick={handleClick}>Submit</button>
+      {/* <button type="submit" onClick={handleClick}>Submit</button> */}
+      <NextButton to="/embed" onClick={handleClick} label="Upload"/>
     </div>
   );
 }

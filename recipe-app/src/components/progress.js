@@ -1,7 +1,8 @@
-function Progress() {
+
+function Progress({ pvalue }) {
     return (
       <div className="App">
-        <progress value={0.5} />
+        <progress value={parseFloat(pvalue)} />
       </div>
     );
   }
