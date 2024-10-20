@@ -5,6 +5,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
+    console.log(isOpen)
     setIsOpen(!isOpen);
   };
 
@@ -12,7 +13,7 @@ function Navbar() {
     <nav className="navbar">
       {/* Logo Section */}
       <div className="logo">
-        <img src={require('../assets/remi1.png')} alt="Logo" /> {/* Adjust path to logo */}
+        <img src={require('../assets/remi1.png')} alt="Logo" /> 
       </div>
 
       {/* Hamburger Menu Icon */}
