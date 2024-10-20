@@ -5,18 +5,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 // import components
-import MainInput from './components/mainInput';
 import Progress from './components/progress';
 import MainForm from './components/mainForm';
-import App from './components/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MainInput/>
+    <h1>REMI</h1>
     <Progress/>
-
-
+    <MainForm/>
 
   </React.StrictMode>
 );

@@ -128,39 +128,7 @@ def new_recipe(new_ingredients, original_user_input):
     final_output = final_recipe.choices[0].message.content
     return final_output
 
-#test case
-original_recipe = """
-Classic Chicken Stir-Fry
 
-Ingredients:
-- Chicken:
-  - 1 lb boneless, skinless chicken breast, thinly sliced
-- Vegetables:
-  - 1 red bell pepper, sliced
-  - 1 yellow bell pepper, sliced
-  - 1 medium carrot, thinly sliced
-  - 1 cup broccoli florets
-  - 1 cup snap peas
-- Sauce:
-  - 3 tbsp soy sauce (or low-sodium soy sauce)
-  - 2 tbsp oyster sauce (optional)
-  - 1 tbsp sesame oil
-  - 1 tbsp cornstarch (to thicken)
-  - 1 tbsp rice vinegar
-  - 1 tbsp honey (optional, for sweetness)
-  - 2 cloves garlic, minced
-  - 1 inch fresh ginger, minced
-- Optional garnish:
-  - Sesame seeds
-  - Green onions, chopped
-
-Instructions:
-1. In a small bowl, mix together soy sauce, oyster sauce, sesame oil, cornstarch, rice vinegar, honey (if using), garlic, and ginger.
-2. Heat a large skillet or wok over medium-high heat with a little oil. Add the sliced chicken and cook until browned, about 4-5 minutes. Remove the chicken and set aside.
-3. In the same pan, add a little more oil and cook the vegetables for 3-5 minutes, stirring occasionally until they’re tender but still crisp.
-4. Return the chicken to the pan and pour in the sauce mixture. Stir well to combine, and cook for an additional 2-3 minutes until the sauce thickens.
-5. Serve hot with rice or noodles and garnish with sesame seeds and green onions if desired.
-"""
 scaling_factor = 2
 food_restriction = "vegetarian"
 health_problems = "high cholesterol"
@@ -170,25 +138,43 @@ protein_goal = 30
 def index():
     return "sdf"
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
-
 @app.route('/api/process_input', methods=['POST', 'OPTIONS'])
 def process_input():
-    # global original_recipe
-    # data = request.get_json()
-    # original_recipe = data['input']
+    print("hello its meee, the backend")
+    global original_recipe
+    data = request.get_json()
+    original_recipe = data['input']
+    print("printing from backend", original_recipe)
     # a = get_ingredients(original_recipe)
     # b = scaling_ingredients(a,scaling_factor)
     # c = food_restrictions(food_restriction, b)
     # d = health_modifications(c, health_problems, food_restriction)
     # e = protein_goals(d, protein_goal)
     # f = new_recipe(e, original_recipe)
-    # print(f)
-    return jsonify({"hello": "Sdfsd"})
+    return "hello"
 
-app.run()
+@app.route('/api/submit-selections', methods=['POST'])
+def submit_selections():
+    # Get the JSON data from the request
+    data = request.get_json()
+
+    # Populate HEALTH_PROBLEMS 
+    global health_problems
+    health_problems = data[0]
+
+    # Populate DIETARY_RESTRICTIONS
+    global food_restriction
+    food_restriction = data[1]
+
+    # d = health_modifications(c, health_problems, food_restriction
+
+    # Return a response
+    print("message Selections received!", data)
+    # print(health_problems)
+    return "message Selections received!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "primeicons": "^7.0.0",
-    "primereact": "^10.8.4"
+    "primereact": "^10.8.4",
+    "react-router-dom": "^6.27.0"
   }
 }
