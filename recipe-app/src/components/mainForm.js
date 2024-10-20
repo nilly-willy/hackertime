@@ -70,7 +70,9 @@ function MainForm() {
               padding: '10px 20px',
               border: 'none',
               cursor: 'pointer',
-              borderRadius:'25px'
+              borderRadius:'25px',
+              backgroundColor: health.includes(option) ? 'lightblue' : 'lightgray'
+
             }}
           >
             {option}
@@ -88,7 +90,8 @@ function MainForm() {
                 padding: '10px 20px',
                 border: 'none',
                 cursor: 'pointer',
-                borderRadius:'25px'
+                borderRadius:'25px',
+                backgroundColor: diet.includes(option) ? 'lightblue' : 'lightgray'
               }}
           >
             {option}

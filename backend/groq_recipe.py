@@ -19,10 +19,12 @@ def get_ingredients(user_input_recipe):
     get_ingredients = client.chat.completions.create(
         messages=[
             {
-                "role": "user",
-                "content": f"Extract the ingredients from this recipe{user_input_recipe}"
-    ,
-            }
+  "role": "user",
+  "content": f"""Please extract the ingredients and their corresponding quantities, 
+  including measurements (e.g., cups, grams, teaspoons, etc.), from the following 
+  recipe: {user_input_recipe}. Ensure to list each ingredient on a new line."""
+}
+
         ],
         model="llama3-8b-8192",
     )
@@ -39,8 +41,8 @@ def scaling_ingredients(ingredients, scaling_factor):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Here are the ingredients and quantities: {ingredients} Multiply these by a factor of {scaling_factor} and return the
-                    new ingredient quantities. Don't show me the multiplication, just return the new quantities"""
+                    "content": f"""Given the following ingredient quantities: {ingredients}, please multiply each quantity by a factor of {scaling_factor}. 
+                Return only the new ingredient quantities without showing any calculations or the original amounts."""
                 }
             ],
             model="llama3-8b-8192",
@@ -58,8 +60,8 @@ def food_restrictions(scaled_ingredients, food_restrictions):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Given these food restrictions: {food_restrictions}, modify my ingredients: {scaled_ingredients} to fit 
-                     within these restrictions"""
+                    "content": f"""Please adjust the following ingredient list: {scaled_ingredients} to comply with these food restrictions: {food_restrictions}. 
+                Ensure that all modifications are suitable and clearly indicate any changes made to the ingredients."""
                 }
             ],
             model="llama3-8b-8192",
@@ -101,7 +103,8 @@ def protein_goals(modified_ingredients, protein_goal):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Given these ingredients: {modified_ingredients}, modify them so I can reach my protein goal of {str(protein_goal)} grams  in this meal."""
+                    "content": f"""Adjust the following ingredients: {modified_ingredients} to help me achieve my protein goal of {str(protein_goal)} grams for this meal. 
+                Please specify any changes made to the ingredient quantities to meet the protein requirement."""
                 }
             ],
             model="llama3-8b-8192",
@@ -117,9 +120,9 @@ def new_recipe(new_ingredients, original_user_input):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Here is the original recipe: {original_user_input}. Replace the ingredients with my modified ones {new_ingredients} 
-                    and return the newly modified recipe.
-                    """
+                    "content": f"""Here is the original recipe: {original_user_input}. Please replace the ingredients with my modified ones: {new_ingredients}. 
+                Format the response so that the ingredients and their quantities are listed first, with each ingredient on a new line. 
+                After the ingredients, include each step of the recipe on a new line as well. Return the newly modified recipe in this format."""
                 }
             ],
             model="llama3-8b-8192",
