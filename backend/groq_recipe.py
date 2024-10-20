@@ -2,6 +2,7 @@ import os
 from groq import Groq
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+import json 
 
 # app = Flask(__name__)
 # CORS(app)
@@ -9,10 +10,9 @@ app = Flask(__name__)
 CORS(app)
 
 client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
+    api_key="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",
 )
 
-original_recipe = ""
 
 # extracting ingredients from recipe
 def get_ingredients(user_input_recipe):
@@ -39,7 +39,7 @@ def scaling_ingredients(ingredients, scaling_factor):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Multiply the quantity of all these {ingredients} by {scaling_factor} and return the
+                    "content": f"""Here are the ingredients and quantities: {ingredients} Multiply these by a factor of {scaling_factor} and return the
                     new ingredient quantities. Don't show me the multiplication, just return the new quantities"""
                 }
             ],
@@ -128,65 +128,109 @@ def new_recipe(new_ingredients, original_user_input):
     final_output = final_recipe.choices[0].message.content
     return final_output
 
-#test case
-original_recipe = """
-Classic Chicken Stir-Fry
-
-Ingredients:
-- Chicken:
-  - 1 lb boneless, skinless chicken breast, thinly sliced
-- Vegetables:
-  - 1 red bell pepper, sliced
-  - 1 yellow bell pepper, sliced
-  - 1 medium carrot, thinly sliced
-  - 1 cup broccoli florets
-  - 1 cup snap peas
-- Sauce:
-  - 3 tbsp soy sauce (or low-sodium soy sauce)
-  - 2 tbsp oyster sauce (optional)
-  - 1 tbsp sesame oil
-  - 1 tbsp cornstarch (to thicken)
-  - 1 tbsp rice vinegar
-  - 1 tbsp honey (optional, for sweetness)
-  - 2 cloves garlic, minced
-  - 1 inch fresh ginger, minced
-- Optional garnish:
-  - Sesame seeds
-  - Green onions, chopped
-
-Instructions:
-1. In a small bowl, mix together soy sauce, oyster sauce, sesame oil, cornstarch, rice vinegar, honey (if using), garlic, and ginger.
-2. Heat a large skillet or wok over medium-high heat with a little oil. Add the sliced chicken and cook until browned, about 4-5 minutes. Remove the chicken and set aside.
-3. In the same pan, add a little more oil and cook the vegetables for 3-5 minutes, stirring occasionally until they’re tender but still crisp.
-4. Return the chicken to the pan and pour in the sauce mixture. Stir well to combine, and cook for an additional 2-3 minutes until the sauce thickens.
-5. Serve hot with rice or noodles and garnish with sesame seeds and green onions if desired.
-"""
+original_recipe = ""
+modified_ingredients = ""
 scaling_factor = 2
 food_restriction = "vegetarian"
 health_problems = "high cholesterol"
 protein_goal = 30
 
+app = Flask(__name__)
+CORS(app)
+
 @app.route('/')
 def index():
-    return "sdf"
-
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
+    return "intializing..."
 
 @app.route('/api/process_input', methods=['POST', 'OPTIONS'])
 def process_input():
-    # global original_recipe
-    # data = request.get_json()
-    # original_recipe = data['input']
-    # a = get_ingredients(original_recipe)
-    # b = scaling_ingredients(a,scaling_factor)
-    # c = food_restrictions(food_restriction, b)
-    # d = health_modifications(c, health_problems, food_restriction)
-    # e = protein_goals(d, protein_goal)
-    # f = new_recipe(e, original_recipe)
-    # print(f)
-    return jsonify({"hello": "Sdfsd"})
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got original data')
+    data_input = data.get('input')
+    global original_recipe
+    original_recipe = data_input
+    #print('Received raw data:', data_input) 
+    global modified_ingredients
+    modified_ingredients = get_ingredients(data_input)
+
+    results = {
+    'status': 'success',
+    'input': data_input,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+@app.route('/api/scaling', methods=['POST', 'OPTIONS'])
+def scaling_input():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got scaling data')
+    data_input = data.get('input')
+    #print('Received raw data:', data_input)
+    int_data = int(data_input)
+    global modified_ingredients
+    modified_ingredients = scaling_ingredients(modified_ingredients,int_data)
+    results = {
+    'status': 'success',
+    'input': int_data,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+#food restriction function
+#dietary restriction function
+
+@app.route('/api/proteinGoals', methods=['POST', 'OPTIONS'])
+def protein_input():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got protein data')
+    data_input = data.get('input')
+    #print('Received raw data:', data_input)
+    int_data = int(data_input)
+    global modified_ingredients
+    modified_ingredients = protein_goals(modified_ingredients,int_data)
+    
+    results = {
+    'status': 'success',
+    'input': int_data,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+@app.route('/api/submit-recipe', methods=['POST', 'OPTIONS'])
+def submit_recipe():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    global modified_ingredients
+    global original_recipe
+    if modified_ingredients is None or original_recipe is None:
+        return jsonify({'status': 'error', 'message': 'No modified ingredients or original recipe found'}), 400
+
+    final = new_recipe(modified_ingredients, original_recipe)
+    results = {
+        'status': 'success',
+        'input': original_recipe,
+        'result': final
+    }
+    print(results)
+    return jsonify(results), 200
+
+
+
 
 app.run()
 

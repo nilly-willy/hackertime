@@ -11,14 +11,7 @@ function MainInput() {
   const handleClick = async () => {
 
     try {
-      // Send a POST request to your Python backend
-      // const response = await fetch('http://localhost:5000/api/process_input', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ input: inputValue }), // Send the input value to the backend
-      // });
+
 
       fetch('http://localhost:5001/').then(res => res.text()).then(console.log)
 
@@ -30,8 +23,6 @@ function MainInput() {
         body: JSON.stringify({ input: inputValue }),
         // credentials: 'include',  // Include this if needed
       });
-      
-
       // const data = await response.json();
       // console.log('Response from backend:', data);
 
