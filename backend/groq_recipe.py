@@ -2,6 +2,7 @@ import os
 from groq import Groq
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+import json 
 
 # app = Flask(__name__)
 # CORS(app)
@@ -9,10 +10,9 @@ app = Flask(__name__)
 CORS(app)
 
 client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
+    api_key="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",
 )
 
-original_recipe = ""
 
 # extracting ingredients from recipe
 def get_ingredients(user_input_recipe):
@@ -39,7 +39,7 @@ def scaling_ingredients(ingredients, scaling_factor):
             messages=[
                 {
                     "role": "user",
-                    "content": f"""Multiply the quantity of all these {ingredients} by {scaling_factor} and return the
+                    "content": f"""Here are the ingredients and quantities: {ingredients} Multiply these by a factor of {scaling_factor} and return the
                     new ingredient quantities. Don't show me the multiplication, just return the new quantities"""
                 }
             ],
@@ -128,31 +128,66 @@ def new_recipe(new_ingredients, original_user_input):
     final_output = final_recipe.choices[0].message.content
     return final_output
 
-
+original_recipe = ""
+modified_ingredients = ""
 scaling_factor = 2
 food_restriction = "vegetarian"
 health_problems = "high cholesterol"
 protein_goal = 30
 
+app = Flask(__name__)
+CORS(app)
+
 @app.route('/')
 def index():
-    return "sdf"
+    return "intializing..."
 
 @app.route('/api/process_input', methods=['POST', 'OPTIONS'])
 def process_input():
-    print("hello its meee, the backend")
-    global original_recipe
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
     data = request.get_json()
-    original_recipe = data['input']
-    print("printing from backend", original_recipe)
-    # a = get_ingredients(original_recipe)
-    # b = scaling_ingredients(a,scaling_factor)
-    # c = food_restrictions(food_restriction, b)
-    # d = health_modifications(c, health_problems, food_restriction)
-    # e = protein_goals(d, protein_goal)
-    # f = new_recipe(e, original_recipe)
-    return "hello"
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got original data')
+    data_input = data.get('input')
+    global original_recipe
+    original_recipe = data_input
+    #print('Received raw data:', data_input) 
+    global modified_ingredients
+    modified_ingredients = get_ingredients(data_input)
 
+    results = {
+    'status': 'success',
+    'input': data_input,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+@app.route('/api/scaling', methods=['POST', 'OPTIONS'])
+def scaling_input():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got scaling data')
+    data_input = data.get('input')
+    #print('Received raw data:', data_input)
+    int_data = int(data_input)
+    global modified_ingredients
+    modified_ingredients = scaling_ingredients(modified_ingredients,int_data)
+    results = {
+    'status': 'success',
+    'input': int_data,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+#food restriction function
+#dietary restriction function
 @app.route('/api/submit-selections', methods=['POST'])
 def submit_selections():
     # Get the JSON data from the request
@@ -172,6 +207,46 @@ def submit_selections():
     print("message Selections received!", data)
     # print(health_problems)
     return "message Selections received!"
+
+@app.route('/api/proteinGoals', methods=['POST', 'OPTIONS'])
+def protein_input():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+    #print('got protein data')
+    data_input = data.get('input')
+    #print('Received raw data:', data_input)
+    int_data = int(data_input)
+    global modified_ingredients
+    modified_ingredients = protein_goals(modified_ingredients,int_data)
+    
+    results = {
+    'status': 'success',
+    'input': int_data,
+    'result': modified_ingredients
+    }
+    print(results)
+    return jsonify(results), 200
+
+@app.route('/api/submit-recipe', methods=['POST', 'OPTIONS'])
+def submit_recipe():
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
+    global modified_ingredients
+    global original_recipe
+    if modified_ingredients is None or original_recipe is None:
+        return jsonify({'status': 'error', 'message': 'No modified ingredients or original recipe found'}), 400
+
+    final = new_recipe(modified_ingredients, original_recipe)
+    results = {
+        'status': 'success',
+        'input': original_recipe,
+        'result': final
+    }
+    print(results)
+    return jsonify(results), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
