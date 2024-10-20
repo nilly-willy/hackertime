@@ -5,8 +5,7 @@ import FinalSubmitButton from './finalSubmit';
 function Loading() {
     return (
       <div className="App">
-        <Progress pvalue="0.75" />
-        <h1>LOADING RATSSSS into ur house</h1>
+        <Progress pvalue="1" />
         {/* <NextButton to="/output" /> */}
         <FinalSubmitButton/>
       </div>

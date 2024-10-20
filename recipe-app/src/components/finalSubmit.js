@@ -45,14 +45,21 @@ function FinalSubmitButton() {
 
   return (
     <div>
-      <button onClick={handleFinalSubmit}>
-        Submit Final Recipe
+      <button onClick={handleFinalSubmit} style={{
+        padding: '10px 20px',
+        backgroundColor: '#FFA65D',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: '16px',
+        fontFamily: 'Sarpanch'
+      }}>
+        Show recipe
       </button>
 
       {/* Display only the result in a readable format */}
       {finalResult && (
         <div>
-          <h3>Final Recipe:</h3>
+          <h3 style={{fontFamily: 'Sarpanch'}}>Here's your new recipe:</h3>
           {formatRecipe(finalResult)}
         </div>
       )}
