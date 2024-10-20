@@ -51,7 +51,7 @@ function ScalingInput() {
       />
       {/* <button onClick={handleSubmit}>Submit</button> */}
       <div style={{margin: '25px 15px 25px 0px'}}>
-      <NextButton to="/output" onClick={handleSubmit} label="get my new recipe!"/>
+      <NextButton to="/load" onClick={handleSubmit} label="get my new recipe!"/>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import NextButton from './nextButton';
 import Progress from './progress';
 
+
 function Output() {
     return (
       <div className="App">
