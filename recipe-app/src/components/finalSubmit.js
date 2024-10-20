@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function FinalSubmitButton() {
+  // State to hold the result from the backend
+  const [finalResult, setFinalResult] = useState('');
+
   const handleFinalSubmit = async () => {
     try {
       const response = await fetch('http://localhost:5001/api/submit-recipe', {
@@ -14,6 +17,7 @@ function FinalSubmitButton() {
       if (response.ok) {
         const data = await response.json();
         console.log('Response from backend:', data);
+        setFinalResult(data.result);  // Set only the result
       } else {
         console.error('Error:', response.statusText);
       }
@@ -22,10 +26,34 @@ function FinalSubmitButton() {
     }
   };
 
+  // Helper function to format the recipe
+  const formatRecipe = (recipe) => {
+    if (Array.isArray(recipe)) {
+      return (
+        <ul>
+          {recipe.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+      );
+    }
+    return <p>{recipe}</p>;  // Handle if it's a string or other format
+  };
+
   return (
-    <button onClick={handleFinalSubmit}>
-      Submit Final Recipe
-    </button>
+    <div>
+      <button onClick={handleFinalSubmit}>
+        Submit Final Recipe
+      </button>
+
+      {/* Display only the result in a readable format */}
+      {finalResult && (
+        <div>
+          <h3>Final Recipe:</h3>
+          {formatRecipe(finalResult)}
+        </div>
+      )}
+    </div>
   );
 }
 
