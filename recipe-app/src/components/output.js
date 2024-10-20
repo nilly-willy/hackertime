@@ -5,7 +5,7 @@ function Output() {
     return (
       <div className="App">
         <Progress pvalue="1" />
-        <h1>NEW RECIPE OH YEAHH</h1>
+        <h1 style={{fontFamily: 'Sarpanch'}}>Your New Recipe:</h1>
       </div>
       
     );

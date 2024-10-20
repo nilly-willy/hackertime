@@ -46,7 +46,7 @@ function MainInput() {
       <input className="Main-text"  type="text" value={inputValue} onChange={handleChange} 
         style={{padding: '12px 20px', height: '50px'}}/>
       {/* <button type="submit" onClick={handleClick}>Submit</button> */}
-      <NextButton to="/embed" type="submit" onClick={handleClick} label="Upload" style={{
+      <NextButton to="/form" type="submit" onClick={handleClick} label="Upload" style={{
               padding: '10px 20px',
               border: 'none',
               cursor: 'pointer',

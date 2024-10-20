@@ -19,7 +19,8 @@ function NextButton({ to, label = "Next", onClick }) {
         backgroundColor: '#FFA65D',
         border: 'none',
         cursor: 'pointer',
-        fontSize: '16px'
+        fontSize: '16px',
+        fontFamily: 'Sarpanch'
       }}
     >
       {label}

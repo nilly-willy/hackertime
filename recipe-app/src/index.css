@@ -13,9 +13,9 @@
 /* Photo Grid */
 .photo-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  padding: 20px;
+  grid-template-columns: 3fr, 3fr;
+  grid-gap: 5px;
+  padding: 15px;
   justify-items: center;
 }
 

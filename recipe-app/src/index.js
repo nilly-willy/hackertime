@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
 
 // import components
-import FirstPage from './components/firstPage'; 
 import MainForm from './components/mainForm';
 import ScalingInput from './components/scaling'
 import ProteinGoalInput from './components/proteinGoals';

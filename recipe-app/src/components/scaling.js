@@ -39,7 +39,7 @@ function ScalingInput() {
   return (
     <div className="App">
       <Progress pvalue="0.667" />
-      <label htmlFor="numberInput">Enter a number:</label>
+      <label htmlFor="numberInput">Scale your recipe:</label>
       <input 
         id="numberInput"
         type="number"  // Use type 'number'
@@ -50,7 +50,9 @@ function ScalingInput() {
         step="1"  // Increment or decrement step size
       />
       {/* <button onClick={handleSubmit}>Submit</button> */}
-      <NextButton to="/load" onClick={handleSubmit} label="get my new recipe!"/>
+      <div style={{margin: '25px 15px 25px 0px'}}>
+      <NextButton to="/output" onClick={handleSubmit} label="get my new recipe!"/>
+      </div>
     </div>
   );
 }
