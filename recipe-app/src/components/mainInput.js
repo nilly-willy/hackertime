@@ -30,8 +30,8 @@ function MainInput() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // const data = await response.json();
-      // console.log('Response from backend:', data);
+      const data = await response.json();
+      console.log('Response from backend:', data);
       
       // Here you can handle the data if needed
 

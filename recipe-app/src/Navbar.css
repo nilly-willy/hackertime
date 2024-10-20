@@ -83,18 +83,17 @@
   
   /* Responsive layout for larger screens */
   @media (min-width: 768px) {
-    .hamburger-n {
-      display: none; /* Hide hamburger on larger screens */
+    .navbar-n {
+      gap: 85vw; /* Controls the distance between the logo and the hamburger */
+      padding: 0px;
     }
-  
-    .menu-n {
+
+    .menu-n.open {
       display: flex;
-      flex-direction: row;
-      position: static; /* Reset positioning */
-    }
-  
-    .menu-n li {
-      margin: 0 15px;
+      width: fit-content;
+      z-index: 10; 
+      position: fixed;
+      margin-top: 25px;
     }
   }
   
