@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function FinalSubmitButton() {
   // State to hold the result from the backend
   const [finalResult, setFinalResult] = useState('');
+  const navigate = useNavigate();
 
   const handleFinalSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/submit-recipe', {
+      const response = await fetch('http://localhost:5000/api/submit-recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,6 +26,7 @@ function FinalSubmitButton() {
     } catch (error) {
       console.error('Error sending data to backend:', error);
     }
+
   };
 
   // Helper function to format the recipe

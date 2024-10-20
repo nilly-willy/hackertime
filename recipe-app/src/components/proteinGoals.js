@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import NextButton from './nextButton';
+import Progress from './progress';
 
 function ProteinGoalInput() {
   const [proteinGoal, setProteinGoal] = useState(0);
@@ -35,6 +37,7 @@ function ProteinGoalInput() {
 
   return (
     <div className="App">
+      <Progress pvalue="0.5" />
       <label htmlFor="proteinInput">Enter your protein goal (in grams):</label>
       <input 
         id="proteinInput"
@@ -44,8 +47,10 @@ function ProteinGoalInput() {
         min="0"   // Set minimum value (optional)
         step="1"  // Increment or decrement step size
       />
-      <button onClick={handleSubmit}>Submit</button>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+      <NextButton to="/scale" onClick={handleSubmit}/>
     </div>
+  
   );
 }
 

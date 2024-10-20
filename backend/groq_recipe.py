@@ -27,7 +27,7 @@ def get_ingredients(user_input_recipe):
         model="llama3-8b-8192",
     )
     get_ingredients_output = get_ingredients.choices[0].message.content
-    #print(get_ingredients.choices[0].message.content)
+    print(get_ingredients.choices[0].message.content)
     return get_ingredients_output
 
 # scaling ingredients based on user defined serving size
@@ -50,7 +50,7 @@ def scaling_ingredients(ingredients, scaling_factor):
         return scaling_output
 
 # food restrictions
-def food_restrictions(food_restrictions, scaled_ingredients):
+def food_restrictions(scaled_ingredients, food_restrictions):
     if food_restrictions == []:
         return scaled_ingredients
     else:
@@ -156,13 +156,14 @@ def process_input():
     #print('Received raw data:', data_input) 
     global modified_ingredients
     modified_ingredients = get_ingredients(data_input)
+    #print(modified_ingredients)
 
     results = {
     'status': 'success',
     'input': data_input,
     'result': modified_ingredients
     }
-    print(results)
+    #print(results)
     return jsonify(results), 200
 
 @app.route('/api/scaling', methods=['POST', 'OPTIONS'])
@@ -190,8 +191,12 @@ def scaling_input():
 #dietary restriction function
 @app.route('/api/submit-selections', methods=['POST'])
 def submit_selections():
-    # Get the JSON data from the request
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'success'}), 200
     data = request.get_json()
+    if data is None:
+        return jsonify({'status': 'error', 'message':'No input data received'}), 400
+    # Get the JSON data from the request
 
     # Populate HEALTH_PROBLEMS 
     global health_problems
@@ -201,12 +206,18 @@ def submit_selections():
     global food_restriction
     food_restriction = data[1]
 
-    # d = health_modifications(c, health_problems, food_restriction)
+    global modified_ingredients
+    modified_ingredients = food_restrictions(modified_ingredients, food_restriction)
+    modified_ingredients = health_modifications(modified_ingredients, health_problems, food_restriction)
 
-    # Return a response
-    print("message Selections received!", data)
-    # print(health_problems)
-    return "message Selections received!"
+    results = {
+        'status': 'success',
+        'input' : health_problems, 
+        'result' : modified_ingredients
+    }
+
+    print(results)
+    return jsonify(results), 200
 
 @app.route('/api/proteinGoals', methods=['POST', 'OPTIONS'])
 def protein_input():
@@ -249,7 +260,7 @@ def submit_recipe():
     return jsonify(results), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = 5000)
 
 
 
