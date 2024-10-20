@@ -13,6 +13,7 @@ import EmbedPage from "./components/embedPage";
 import Loading from "./components/loading";
 import Output from "./components/output";
 import Navbar from "./components/navbar";
+import HomePage from './components/HomePage'; 
 
 function Layout() {
   return (
@@ -30,7 +31,7 @@ return (
       {/* Set Layout as the base route */}
       <Route path="/" element={<Layout />} >
         {/* Use 'index' for the default page */}
-        <Route index element={<FirstPage />} />
+        <Route index element={<HomePage />} />
         <Route path="input" element={<MainInput />} />
         <Route path="embed" element={<EmbedPage />} />
         <Route path="form" element={<MainForm />} />

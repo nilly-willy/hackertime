@@ -1,7 +1,7 @@
 /* Navbar.css */
 
 /* Navbar container styles */
-.navbar {
+.navbar-n {
     display: flex;
     justify-content: space-between; /* Ensure space between logo and menu */
     align-items: center;
@@ -10,13 +10,13 @@
   }
   
   /* Logo styling */
-  .logo img {
+  .logo-n img {
     width: 150px; /* Adjust the size of the logo as needed */
     height: auto;
   }
   
   /* Hamburger icon (shown only on smaller screens) */
-  .hamburger {
+  .hamburger-n {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -27,23 +27,24 @@
     margin-left: auto; /* Pushes the hamburger to the right */
   }
   
-  .line {
+  .line-n {
     width: 100%;
     height: 3px;
     background-color: #b63a3a;
     border-radius: 2px;
   }
 
-  .hamburger.open .line {
+  .menu-n.open .line {
     background-color: white;
   }
   
   /* Menu styling */
-  .menu {
+  .menu-n {
     list-style: none;
     display: none;
     flex-direction: column;
     align-items: flex-start;
+    width: fit-content;
     margin: 0;
     padding: 0;
     position: absolute;
@@ -52,38 +53,42 @@
     right: 20px; /* Ensure the menu is aligned to the right */
   }
   
-  .menu.open {
+  .menu-n.open {
     display: flex;
+    width: fit-content;
+    z-index: 10; 
+    position: fixed;
 
   }
 
-  .menu.open a {
+  .menu-n.open a {
     color: white;
   }
   
-  .menu li {
+  .menu-n li {
     margin: 10px 0;
+    padding: 14px;
   }
   
-  .menu a {
+  .menu-n a {
     text-decoration: none;
     color: #1E1E1E;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   /* Responsive layout for larger screens */
   @media (min-width: 768px) {
-    .hamburger {
+    .hamburger-n {
       display: none; /* Hide hamburger on larger screens */
     }
   
-    .menu {
+    .menu-n {
       display: flex;
       flex-direction: row;
       position: static; /* Reset positioning */
     }
   
-    .menu li {
+    .menu-n li {
       margin: 0 15px;
     }
   }
