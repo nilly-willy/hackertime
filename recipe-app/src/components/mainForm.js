@@ -40,17 +40,18 @@ function MainForm() {
 
   const sendDataToBackend = async() => {
     console.log(health);
+    console.log(diet);
     try {
         console.log("fetching right now...")
-        await fetch('http://localhost:5000/api/submit-selections', {
+        await fetch('http://localhost:5001/api/submit-selections', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify( [health, diet] ), // Sending the health array
       });
-      // const data = await response.json();
-      // console.log(data);
+      //const data = await response.json();
+      //console.log(data);
     } catch (error) {
       console.log("Caught error: ", error)
     }
