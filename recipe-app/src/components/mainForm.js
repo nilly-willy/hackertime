@@ -104,7 +104,10 @@ function MainForm() {
         }}>
         Submit
       </button> */}
+<<<<<<< HEAD
       
+=======
+>>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
       <NextButton to="/protein" onClick={sendDataToBackend} />
     </div>
 

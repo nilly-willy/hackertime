@@ -5,16 +5,20 @@ import { Outlet } from 'react-router-dom';
 // import components
 import FirstPage from './components/firstPage'; 
 import MainForm from './components/mainForm';
-import Progress from './components/progress';
 import ScalingInput from './components/scaling'
 import ProteinGoalInput from './components/proteinGoals';
 import FinalSubmitButton from './components/finalSubmit';
 import MainInput from "./components/mainInput";
+import EmbedPage from "./components/embedPage";
+import Loading from "./components/loading";
+import Output from "./components/output";
+import Navbar from "./components/navbar";
 
 function Layout() {
   return (
     <div>
-      <h1>REMI</h1>
+      <Navbar />
+      <Outlet />
     </div>
   );
 }
@@ -24,15 +28,16 @@ return (
   <BrowserRouter>
     <Routes>
       {/* Set Layout as the base route */}
-      <Route path="/">
+      <Route path="/" element={<Layout />} >
         {/* Use 'index' for the default page */}
         <Route index element={<FirstPage />} />
         <Route path="input" element={<MainInput />} />
+        <Route path="embed" element={<EmbedPage />} />
         <Route path="form" element={<MainForm />} />
-        <Route path="progress" element={<Progress />} />
-        <Route path="scale" element={<ScalingInput />} />
         <Route path="protein" element={<ProteinGoalInput />} />
-        <Route path="submit" element={<FinalSubmitButton />} />
+        <Route path="scale" element={<ScalingInput />} />
+        <Route path="load" element={<Loading />} />
+        <Route path="output" element={<Output />} />
       </Route>
     </Routes>
   </BrowserRouter>

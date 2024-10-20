@@ -195,7 +195,11 @@ def submit_selections():
         return jsonify({'status': 'success'}), 200
     data = request.get_json()
     if data is None:
+<<<<<<< HEAD
         return jsonify({'status': 'error', 'message': 'No input data received'}), 400
+=======
+        return jsonify({'status': 'error', 'message':'No input data received'}), 400
+>>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
     # Get the JSON data from the request
 
     # Populate HEALTH_PROBLEMS 
@@ -212,9 +216,15 @@ def submit_selections():
 
     results = {
         'status': 'success',
+<<<<<<< HEAD
         'input': health_problems,
         'result': modified_ingredients
         }
+=======
+        'input' : health_problems, 
+        'result' : modified_ingredients
+    }
+>>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
 
     print(results)
     return jsonify(results), 200

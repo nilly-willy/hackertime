@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import Progress from './progress'; 
 import NextButton from './nextButton'; 
+=======
+import NextButton from './nextButton';
+import Progress from './progress';
+>>>>>>> 104401c39648318d2154a6b1cba18a14ddcfbe19
 
 function ProteinGoalInput() {
   const [proteinGoal, setProteinGoal] = useState(0);
